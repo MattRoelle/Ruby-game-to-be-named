@@ -1,5 +1,5 @@
-require_relative 'rect'
-require_relative 'routines'
+require './rect'
+require './routines'
 
 class Wall
 

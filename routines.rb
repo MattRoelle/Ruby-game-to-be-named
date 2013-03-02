@@ -11,4 +11,11 @@ module DrawingRoutines
 	end
 
 end
-#
+
+class Numeric
+
+  def toRadians
+    return (self*Math::PI)/180
+  end
+
+end

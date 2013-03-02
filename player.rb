@@ -1,5 +1,5 @@
-require_relative 'rect'
-require_relative 'routines.rb'
+require './rect'
+require './routines.rb'
 
 require 'gosu'
 
@@ -15,7 +15,7 @@ class Player
 		@h = 32
 		@color = 0xFFFF0000
 		@rect = Rect.new(@x,@y,@w,@h)
-		@speed = 3
+		@speed = 5
 	end
 
 	def draw(window, xOffset=0, yOffset=0)
@@ -31,12 +31,12 @@ class Player
 		@y = y
 	end
 
-	def move(dx, dy, level)
+	def move(angle, level)
 		oldX = @x
 		oldY = @y
 
-		@x += dx*3
-		@y += dy*3
+		@x += Math.cos(angle)*3
+		@y += Math.sin(angle)*3
 
 		@rect = Rect.new(@x,@y,@w,@h)
 

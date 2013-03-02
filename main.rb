@@ -1,12 +1,12 @@
-require_relative 'player'
-require_relative 'level'
+require './player'
+require './level'
 
 require 'gosu'
 
 class GameWindow < Gosu::Window
 
   def initialize
-    super 640, 480, false
+    super 800, 600, false
     @player = Player.new
     @level = Level.new
   end
@@ -24,7 +24,7 @@ class GameWindow < Gosu::Window
   def handleInput
   	input = {}
 
-  	[Gosu::KbLeft, Gosu::KbRight, Gosu::KbUp, Gosu::KbDown].each do |dir|
+  	[Gosu::KbA, Gosu::KbD, Gosu::KbW, Gosu::KbS].each do |dir|
   		if button_down?(dir)
   			input[dir] = true
   		else
@@ -33,16 +33,17 @@ class GameWindow < Gosu::Window
   	end
 
   	#Player Movement
-	  	if input[Gosu::KbLeft] and input[Gosu::KbUp] then @player.move(-1,-1,@level)
-	  	elsif input[Gosu::KbLeft] and input[Gosu::KbDown] then @player.move(-1,1,@level)
+	  	if input[Gosu::KbA] and input[Gosu::KbW] then @player.move(-135.toRadians,@level)
+	  	elsif input[Gosu::KbA] and input[Gosu::KbS] then @player.move(135.toRadians,@level)
 
-	  	elsif input[Gosu::KbRight] and input[Gosu::KbDown] then @player.move(1,1,@level)
-	  	elsif input[Gosu::KbRight] and input[Gosu::KbUp] then @player.move(1,-1,@level)
-
-	  	elsif input[Gosu::KbUp] then @player.move(0,-1,@level)
-	  	elsif input[Gosu::KbDown] then @player.move(0,1,@level)
-	  	elsif input[Gosu::KbLeft] then @player.move(-1,0,@level)
-	  	elsif input[Gosu::KbRight] then @player.move(1,0,@level)
+	  	elsif input[Gosu::KbD] and input[Gosu::KbS] then @player.move(45.toRadians,@level)
+	  	elsif input[Gosu::KbD] and input[Gosu::KbW] then @player.move(-45.toRadians,@level)
+      else
+  	  	if input[Gosu::KbW] then @player.move(270.toRadians,@level)
+  	  	elsif input[Gosu::KbS] then @player.move(90.toRadians,@level)
+  	  	elsif input[Gosu::KbA] then @player.move(180.toRadians,@level)
+  	  	elsif input[Gosu::KbD] then @player.move(0.toRadians,@level)
+        end
   	end
   end
 
@@ -50,4 +51,3 @@ end
 
 window = GameWindow.new
 window.show
-#

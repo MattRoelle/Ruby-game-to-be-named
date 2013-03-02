@@ -1,4 +1,4 @@
-require_relative 'wall'
+require './wall'
 
 class Level
 
