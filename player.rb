@@ -38,10 +38,13 @@ class Player
 		@x += dx*3
 		@y += dy*3
 
+		@rect = Rect.new(@x,@y,@w,@h)
+
 		level.walls.each do |wall|
 			if wall.rect.collideWith?(@rect)
-				@x = oldX-dx
-				@y = oldY-dy
+				@x = oldX
+				@y = oldY
+				@rect = Rect.new(@x,@y,@w,@h)
 			end
 		end
 	end
