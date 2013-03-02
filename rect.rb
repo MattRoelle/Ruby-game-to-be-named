@@ -36,4 +36,3 @@ class Rect
 	end
 
 end
-#
